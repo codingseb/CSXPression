@@ -3,14 +3,19 @@ using System;
 
 namespace CSXPression
 {
-    public class Evaluator
+    public class ExpressionEvaluator
     {
-        public Evaluator()
+        public IParser Parser { get; set; }
+
+        public ExpressionEvaluator()
         {
             Parser = new Parser();
         }
 
-        public IParser Parser { get; set; }
+        public ExpressionEvaluator(IParser parser)
+        {
+            Parser = parser;
+        }
 
         public virtual ParsedExpression<T> Parse<T>(string code)
         {

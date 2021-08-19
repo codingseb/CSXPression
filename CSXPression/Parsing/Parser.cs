@@ -37,6 +37,8 @@ namespace CSXPression
             { "m", (number, culture) => decimal.Parse(number, NumberStyles.Any, culture) }
         };
 
+        public ParserOptions Options { get; set; } = new ParserOptions();
+
         /// <inheritdoc />
         public IToken Parse(string code)
         {
@@ -92,7 +94,7 @@ namespace CSXPression
 
                 string value = otherBaseMatch.Groups["value"].Value.Replace("_", "").Substring(2);
                 int numberValue = otherBaseMatch.Groups["sign"].Value.Equals("-") ? -Convert.ToInt32(value, baseValue) : Convert.ToInt32(value, baseValue);
-                stack.Push(new NumberToken(numberValue, typeof(int)));
+                stack.Push(new ConstantToken(numberValue));
 
                 return true;
             }
@@ -125,7 +127,7 @@ namespace CSXPression
                     numberValue = int.Parse(numberMatch.Value.Replace("_", ""), NumberStyles.Any, CultureInfo.InvariantCulture);
                 }
 
-                stack.Push(new NumberToken(numberValue, numberValue.GetType()));
+                stack.Push(new ConstantToken(numberValue));
 
                 return true;
             }

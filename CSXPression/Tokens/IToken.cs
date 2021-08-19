@@ -7,6 +7,6 @@ namespace CSXPression.Tokens
     /// </summary>
     public interface IToken
     {
-        Expression GetExpression(Evaluator evaluator);
+        Expression GetExpression(ExpressionEvaluator evaluator);
     }
 }
