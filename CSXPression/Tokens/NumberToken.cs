@@ -17,7 +17,7 @@ namespace CSXPression.Tokens
         public Type NumberType { get; }
         public object Value { get; }
 
-        public Expression GetExpression()
+        public Expression GetExpression(Evaluator evaluator)
         {
             return Expression.Constant(Value, NumberType);
         }

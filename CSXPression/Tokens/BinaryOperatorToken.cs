@@ -17,9 +17,9 @@ namespace CSXPression.Tokens
 
         public ExpressionType ExpressionType { get; }
 
-        public virtual Expression GetExpression()
+        public virtual Expression GetExpression(Evaluator evaluator)
         {
-            return Expression.MakeBinary(ExpressionType, LeftOperand.GetExpression(), RightOperand.GetExpression());
+            return Expression.MakeBinary(ExpressionType, LeftOperand.GetExpression(evaluator), RightOperand.GetExpression(evaluator));
         }
 
         public override string ToString()

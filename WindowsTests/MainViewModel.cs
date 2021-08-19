@@ -1,4 +1,5 @@
-﻿using ExpressionsTests;
+﻿
+using CSXPression;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -8,7 +9,7 @@ namespace WindowsTests
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private readonly ExpCompiler expCompiler = new();
+        private readonly Parser parser = new();
 
         public string Expression { get; set; }
 
@@ -18,7 +19,9 @@ namespace WindowsTests
         {
             try
             {
-                Result = expCompiler.Compile(Expression)()?.ToString() ?? "null";
+                Evaluator evaluator = new Evaluator();
+
+                Result = evaluator.Evaluate(Expression)?.ToString() ?? "null";
             }
             catch(Exception exception)
             {
