@@ -1,4 +1,4 @@
-﻿using ExpressionsTests.Tokens;
+﻿using CSXPression.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 
-namespace ExpressionsTests
+namespace CSXPression
 {
     public class ExpCompiler
     {

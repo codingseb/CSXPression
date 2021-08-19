@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ExpressionsTests
+namespace CSXPression
 {
     /// <summary>
     /// Represent a encapsulated compiled expression tree with some additionnal features

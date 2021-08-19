@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExpressionsTests\CSXPression.csproj" />
+    <ProjectReference Include="..\CSXPression\CSXPression.csproj" />
   </ItemGroup>
 
 </Project>

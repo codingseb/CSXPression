@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace ExpressionsTests.Tokens
+namespace CSXPression.Tokens
 {
     /// <summary>
     /// This token represent a number

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
-namespace ExpressionsTests.Tokens
+namespace CSXPression.Tokens
 {
     /// <summary>
-    /// This token reresent a operator with 2 operand
+    /// This token represent a operator with 2 operand
     /// </summary>
     public class BinaryOperatorToken : IToken
     {
