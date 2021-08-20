@@ -12,6 +12,13 @@
     <StackPanel>
         <TextBox Text="{Binding Expression, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
         <Button Content="_Execute" IsDefault="True" Command="{Binding ExecuteCommand}"/>
+        <DockPanel>
+            <Label Content="_Iterations"
+                   Target="{Binding ElementName=IterationsTextBox}" />
+            <TextBox x:Name="IterationsTextBox"
+                     Text="{Binding Iterations, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+        </DockPanel>
         <TextBlock Text="{Binding Result}" />
+        <TextBlock Text="{Binding ExecutionTime}" />
     </StackPanel>
 </Window>

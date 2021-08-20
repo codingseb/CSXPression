@@ -30,13 +30,13 @@ namespace CSXPression.Parsing
         {
             Stack<IToken> stack = new();
 
-            for(int i = 0; i < code.Length; i++)
+            for (int i = 0; i < code.Length; i++)
             {
                 if (!ParsingMethods.Any(parsingMethod => parsingMethod(code, stack, ref i)))
                 {
                     string s = code.Substring(i, 1);
 
-                    if (!s.Trim().Equals(string.Empty))
+                    if (!string.IsNullOrWhiteSpace(s))
                     {
                         throw new Exception($"Invalid character [{(int)s[0]}:{s}]");
                     }

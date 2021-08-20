@@ -1,7 +1,10 @@
 ﻿using CSXPression;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace WindowsTests
@@ -9,21 +12,45 @@ namespace WindowsTests
     public class MainViewModel : INotifyPropertyChanged
     {
         private readonly ExpressionEvaluator evaluator = new();
+        private CancellationTokenSource cancellationTokenSource;
 
         public string Expression { get; set; }
 
         public string Result { get; set; }
 
-        public ICommand ExecuteCommand => new RelayCommand(_ =>
+        public string ExecutionTime { get; set; }
+
+        public int Iterations { get; set; } = 1;
+
+        public ICommand ExecuteCommand => new RelayCommand(async _ =>
         {
-            try
+            Stopwatch stopWatch = new Stopwatch();
+            cancellationTokenSource = new CancellationTokenSource();
+            cancellationTokenSource.Token.ThrowIfCancellationRequested();
+            
+            Result = await Task.Run(() =>
             {
-                Result = evaluator.Evaluate(Expression)?.ToString() ?? "null";
-            }
-            catch(Exception exception)
-            {
-                Result = exception.ToString();
-            }
+                string innerResult = "null or Empty";
+                stopWatch.Start();
+
+                try
+                {
+                    for (int i = 0; i < Iterations && !cancellationTokenSource.Token.IsCancellationRequested; i++)
+                        innerResult = evaluator.Evaluate(Expression)?.ToString() ?? "null or Empty";
+
+                    return innerResult;
+                }
+                catch (Exception exception)
+                {
+                    return exception.ToString();
+                }
+                finally
+                {
+                    stopWatch.Stop();
+                }
+            }, cancellationTokenSource.Token).ConfigureAwait(true);
+
+            ExecutionTime = $"Execution time : {stopWatch.Elapsed}";
         });
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -4,9 +4,9 @@ using System.Linq.Expressions;
 namespace CSXPression.Tokens
 {
     /// <summary>
-    /// This token represent a operator with 2 operand
+    /// This token represent a operator with 2 operands
     /// </summary>
-    public class BinaryOperatorToken : IToken
+    public class BinaryOperatorToken : IToken, IExpressionTypeToken
     {
         public BinaryOperatorToken(ExpressionType expressionType)
         {
@@ -23,13 +23,13 @@ namespace CSXPression.Tokens
             Expression left = LeftOperand.GetExpression(evaluator);
             Expression right = RightOperand.GetExpression(evaluator);
 
-            if(left.Type != right.Type)
+            if (left.Type != right.Type)
             {
-                if(left.Type.IsImplicitlyCastableTo(right.Type))
+                if (left.Type.IsImplicitlyCastableTo(right.Type))
                 {
                     left = Expression.Convert(left, right.Type);
                 }
-                else if(right.Type.IsImplicitlyCastableTo(left.Type))
+                else if (right.Type.IsImplicitlyCastableTo(left.Type))
                 {
                     right = Expression.Convert(right, left.Type);
                 }
@@ -40,7 +40,7 @@ namespace CSXPression.Tokens
 
         public override string ToString()
         {
-            return $"Type = {GetType().FullName}, ExpressionType = {ExpressionType}";
+            return $"Type = {GetType()}, ExpressionType = {ExpressionType}";
         }
     }
 }
