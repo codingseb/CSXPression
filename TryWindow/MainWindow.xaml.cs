@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WindowsTests
+namespace TryWindow
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace WindowsTests
+namespace TryWindow
 {
     public class MainViewModel : INotifyPropertyChanged
     {
@@ -35,8 +35,10 @@ namespace WindowsTests
 
                 try
                 {
+                    var compiledFunc = evaluator.Compile<object>(Expression);
+
                     for (int i = 0; i < Iterations && !cancellationTokenSource.Token.IsCancellationRequested; i++)
-                        innerResult = evaluator.Evaluate(Expression)?.ToString() ?? "null or Empty";
+                        innerResult = compiledFunc()?.ToString() ?? "null or Empty";
 
                     return innerResult;
                 }

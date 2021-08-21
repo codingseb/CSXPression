@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSXPression", "CSXPression\CSXPression.csproj", "{4E27F147-F509-4AC2-ADC6-70462102BDB5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsTests", "WindowsTests\WindowsTests.csproj", "{DB3312C3-B6C5-43FB-B62B-4CD52B3A24F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TryWindow", "TryWindow\TryWindow.csproj", "{DB3312C3-B6C5-43FB-B62B-4CD52B3A24F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSXPression.Tests", "CSXPression.Tests\CSXPression.Tests.csproj", "{F33A3CE7-99CE-4213-BD26-97B756C87D2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DB3312C3-B6C5-43FB-B62B-4CD52B3A24F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB3312C3-B6C5-43FB-B62B-4CD52B3A24F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB3312C3-B6C5-43FB-B62B-4CD52B3A24F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F33A3CE7-99CE-4213-BD26-97B756C87D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F33A3CE7-99CE-4213-BD26-97B756C87D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F33A3CE7-99CE-4213-BD26-97B756C87D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F33A3CE7-99CE-4213-BD26-97B756C87D2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

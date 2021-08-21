@@ -57,7 +57,7 @@ namespace CSXPression.Parsing
 
                 if (UnaryOperatorsDictionary.ContainsKey(op)
                     && (!BinaryOperatorsDictionary.ContainsKey(op)
-                    || stack.Count == 0 || stack.Peek() is not BinaryOperatorToken))
+                    || stack.Count == 0 || stack.Peek() is BinaryOperatorToken))
                 {
                     stack.Push(new UnaryOperatorToken(UnaryOperatorsDictionary[op]));
                 }
