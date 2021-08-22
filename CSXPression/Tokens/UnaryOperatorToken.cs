@@ -3,25 +3,31 @@
 namespace CSXPression.Tokens
 {
     /// <summary>
-    /// This token represent a operator with 1 operand
+    /// This token represent a expression operator with only 1 operand
     /// </summary>
-    public class UnaryOperatorToken : IToken, IExpressionTypeToken
+    public class UnaryOperatorToken : IToken, IOperatorToken, IUnaryOperatorToken
     {
         public UnaryOperatorToken(ExpressionType expressionType)
         {
             ExpressionType = expressionType;
         }
 
+        /// <inheritdoc/>
         public IToken Operand { get; set; }
 
-        public ExpressionType ExpressionType { get; }
+        public ExpressionType ExpressionType { get; set; }
 
+        ///<inheritdoc/>
+        public string PrecedenceId => ExpressionType.ToString();
+
+        /// <inheritdoc/>
         public Expression GetExpression(ExpressionEvaluator evaluator)
         {
-            var operandExpression = Operand.GetExpression(evaluator);
+            Expression operandExpression = Operand.GetExpression(evaluator);
             return Expression.MakeUnary(ExpressionType, operandExpression, operandExpression.Type);
         }
-        
+
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"Type = {GetType()}, ExpressionType = {ExpressionType}";

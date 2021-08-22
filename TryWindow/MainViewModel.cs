@@ -27,7 +27,7 @@ namespace TryWindow
             Stopwatch stopWatch = new Stopwatch();
             cancellationTokenSource = new CancellationTokenSource();
             cancellationTokenSource.Token.ThrowIfCancellationRequested();
-            
+
             Result = await Task.Run(() =>
             {
                 string innerResult = "null or Empty";

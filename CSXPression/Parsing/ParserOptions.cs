@@ -3,7 +3,7 @@
     /// <summary>
     /// This class describe the way a parser parse its given code
     /// </summary>
-    public class ParserOptions
+    public class ParserOptions : IParserOptions
     {
         /// <summary>
         /// If <c>true</c> the parsing of the code is case sensitives.

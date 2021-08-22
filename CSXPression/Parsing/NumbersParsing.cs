@@ -63,7 +63,7 @@ namespace CSXPression.Parsing
                         numberValue = parseFunc(numberNoType, CultureInfo.InvariantCulture);
                     }
                 }
-                else if (numberMatch.Groups["hasdecimal"].Success)
+                else if (numberMatch.Groups["hasdecimal"].Success || Options.ForceIntegerParsingAsDouble)
                 {
                     numberValue = double.Parse(numberMatch.Value.Replace("_", ""), NumberStyles.Any, CultureInfo.InvariantCulture);
                 }

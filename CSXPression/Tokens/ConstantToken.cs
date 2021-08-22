@@ -12,8 +12,12 @@ namespace CSXPression.Tokens
             Value = value;
         }
 
-        public object Value { get; }
+        /// <summary>
+        /// The constant value
+        /// </summary>
+        public object Value { get; set; }
 
+        /// <inheritdoc/>
         public Expression GetExpression(ExpressionEvaluator evaluator)
         {
             return Expression.Constant(Value);

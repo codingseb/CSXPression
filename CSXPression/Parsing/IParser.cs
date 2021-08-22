@@ -8,6 +8,11 @@ namespace CSXPression.Parsing
     public interface IParser
     {
         /// <summary>
+        /// Options of the parser to customize the way the parsing is done.
+        /// </summary>
+        IParserOptions ParserOptions { get; set; }
+
+        /// <summary>
         /// This method build a tokens tree from the specified code base on the syntax of the parser
         /// </summary>
         /// <param name="code">The code to parse</param>

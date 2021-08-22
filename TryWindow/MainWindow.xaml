@@ -16,6 +16,7 @@
             <Label Content="_Iterations"
                    Target="{Binding ElementName=IterationsTextBox}" />
             <TextBox x:Name="IterationsTextBox"
+                     VerticalContentAlignment="Center"
                      Text="{Binding Iterations, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
         </DockPanel>
         <TextBlock Text="{Binding Result}" />

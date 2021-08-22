@@ -6,18 +6,25 @@ namespace CSXPression.Tokens
     /// <summary>
     /// This token represent a operator with 2 operands
     /// </summary>
-    public class BinaryOperatorToken : IToken, IExpressionTypeToken
+    public class BinaryOperatorToken : IToken, IOperatorToken, IBinaryOperatorToken
     {
         public BinaryOperatorToken(ExpressionType expressionType)
         {
             ExpressionType = expressionType;
         }
 
+        /// <inheritdoc/>
         public IToken LeftOperand { get; set; }
+
+        /// <inheritdoc/>
         public IToken RightOperand { get; set; }
 
-        public ExpressionType ExpressionType { get; }
+        public ExpressionType ExpressionType { get; set; }
 
+        ///<inheritdoc/>
+        public string PrecedenceId => ExpressionType.ToString();
+
+        /// <inheritdoc/>
         public virtual Expression GetExpression(ExpressionEvaluator evaluator)
         {
             Expression left = LeftOperand.GetExpression(evaluator);
@@ -38,6 +45,7 @@ namespace CSXPression.Tokens
             return Expression.MakeBinary(ExpressionType, left, right);
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"Type = {GetType()}, ExpressionType = {ExpressionType}";

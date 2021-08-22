@@ -9,7 +9,15 @@ namespace CSXPression.Parsing
 {
     public partial class Parser
     {
-        protected IDictionary<string, ExpressionType> BinaryOperatorsDictionary => new Dictionary<string, ExpressionType>(Options.IgnoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal)
+        /// <summary>
+        /// Dictionary used to map the string operator detection to its corresponding <see cref="ExpressionType"/>
+        /// to build a <see cref="BinaryOperatorToken" />.
+        /// <para>
+        /// Default Dictionary based on https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/
+        /// and https://docs.microsoft.com/en-us/dotnet/api/system.linq.expressions.expressiontype
+        /// </para>
+        /// </summary>
+        public virtual IDictionary<string, ExpressionType> BinaryOperatorsDictionary => new Dictionary<string, ExpressionType>(Options.IgnoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal)
         {
             { "+", ExpressionType.Add },
             { "-", ExpressionType.Subtract },
@@ -33,13 +41,22 @@ namespace CSXPression.Parsing
             { "??", ExpressionType.Coalesce },
         };
 
-        protected IDictionary<string, ExpressionType> UnaryOperatorsDictionary => new Dictionary<string, ExpressionType>(Options.IgnoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal)
+        /// <summary>
+        /// Dictionary used to map the string operator detection to its corresponding <see cref="ExpressionType"/>
+        /// to build a <see cref="UnaryOperatorToken" />.
+        /// <para>
+        /// Default Dictionary based on https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/
+        /// and https://docs.microsoft.com/en-us/dotnet/api/system.linq.expressions.expressiontype
+        /// </para>
+        /// </summary>
+        public virtual IDictionary<string, ExpressionType> UnaryOperatorsDictionary => new Dictionary<string, ExpressionType>(Options.IgnoreCase ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal)
         {
             { "+", ExpressionType.UnaryPlus },
             { "-", ExpressionType.Negate },
             { "!", ExpressionType.Not },
-            { "~", ExpressionType.Not },
+            { "~", ExpressionType.OnesComplement },
         };
+
         protected virtual bool ParseOperators(string expression, Stack<IToken> stack, ref int i)
         {
             string regexPattern = "^(" + string.Join("|",
@@ -57,7 +74,7 @@ namespace CSXPression.Parsing
 
                 if (UnaryOperatorsDictionary.ContainsKey(op)
                     && (!BinaryOperatorsDictionary.ContainsKey(op)
-                    || stack.Count == 0 || stack.Peek() is BinaryOperatorToken))
+                    || stack.Count == 0 || stack.Peek() is IOperatorToken))
                 {
                     stack.Push(new UnaryOperatorToken(UnaryOperatorsDictionary[op]));
                 }
