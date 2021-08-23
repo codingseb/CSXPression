@@ -200,8 +200,8 @@ namespace CSXPression.Tests
         [TestCase(@"'\v'", ExpectedResult = '\v', Category = "char")]
         [TestCase("'\"'", ExpectedResult = '"', Category = "char")]
 
-        // TODO string, Methods for char tests
-        //[TestCase("\"hello\" + ' ' + '!'", ExpectedResult = "hello !", Category = "char")]
+        // TODO  Methods for char tests
+        [TestCase("\"hello\" + ' ' + '!'", ExpectedResult = "hello !", Category = "char")]
         //[TestCase("(int)'a'", ExpectedResult = 97, Category = "char")]
         //[TestCase("'a'.CompareTo('b')", ExpectedResult = -1, Category = "char")]
         //[TestCase("'a'.Equals('b')", ExpectedResult = false, Category = "char")]
@@ -1017,6 +1017,9 @@ namespace CSXPression.Tests
         //#endregion
 
         //#region Complex expressions
+        [TestCase("0 >> +-+-+-+2 << +-+-+-+-2 >> +-+-+-+-+2 << +-+-+-+-+2", ExpectedResult = 0, Category = "Complex expression, Multi operators")]
+        [TestCase("+-+-+-+-+0", ExpectedResult = 0, Category = "Complex expression, Multi operators")]
+        [TestCase("+-+-+-+-+2", ExpectedResult = 2, Category = "Complex expression, Multi operators")]
         //[TestCase("Enumerable.Range(1,4).Cast().Sum(x =>(int)x)", ExpectedResult = 10, Category = "Complex expression,Static method,Instance method,Lambda function,Cast")]
         //[TestCase("System.Linq.Enumerable.Range(1,4).Cast().Sum(x =>(int)x)", ExpectedResult = 10, Category = "Complex expression,Static method,Instance method,Lambda function,Cast")]
         //[TestCase("List(1,2,3,4,5,6).ConvertAll(x => (float)x)[2].GetType()", ExpectedResult = typeof(float), Category = "Complex expression,Type Manage,Instance method,Lambda function,Cast,Indexing")]

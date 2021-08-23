@@ -15,11 +15,7 @@ namespace CSXPression.Parsing
         // Based on https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/
         public virtual List<string> OperatorsPrecedence { get; set; } = new List<string>()
         {
-            nameof(ExpressionType.UnaryPlus),
-            nameof(ExpressionType.Negate),
-            nameof(ExpressionType.Not),
-            nameof(ExpressionType.OnesComplement),
-            nameof(ExpressionType.Convert),
+            "Unary",
             nameof(ExpressionType.Multiply),
             nameof(ExpressionType.Divide),
             nameof(ExpressionType.Modulo),
@@ -56,8 +52,10 @@ namespace CSXPression.Parsing
 
             List<IToken> tokensList = stack.Reverse().ToList();
 
-            OperatorsPrecedence.ForEach(precedenceId =>
+            for(int pIndex = 0; pIndex < OperatorsPrecedence.Count && tokensList.Count > 1; pIndex++)
             {
+                string precedenceId = OperatorsPrecedence[pIndex];
+
                 for (int i = 0; i < tokensList.Count; i++)
                 {
                     if (tokensList[i] is IOperatorToken operatorToken
@@ -75,11 +73,18 @@ namespace CSXPression.Parsing
                         }
                         else if (operatorToken is IUnaryOperatorToken unaryOperatorToken)
                         {
+                            while (rightToken is IUnaryOperatorToken nestedUnaryOperator)
+                            {
+                                unaryOperatorToken.Operand = nestedUnaryOperator;
+                                unaryOperatorToken = nestedUnaryOperator;
+                                rightToken = tokensList[i + 1];
+                                tokensList.RemoveAt(i + 1);
+                            }
                             unaryOperatorToken.Operand = rightToken;
                         }
                     }
                 }
-            });
+            }
 
             return tokensList[0];
         }

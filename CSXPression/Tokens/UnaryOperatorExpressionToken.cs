@@ -5,7 +5,7 @@ namespace CSXPression.Tokens
     /// <summary>
     /// This token represent a expression operator with only 1 operand
     /// </summary>
-    public class UnaryOperatorExpressionToken : IToken, IOperatorToken, IUnaryOperatorToken
+    public class UnaryOperatorExpressionToken : IUnaryOperatorToken
     {
         public UnaryOperatorExpressionToken(ExpressionType expressionType)
         {
@@ -18,7 +18,7 @@ namespace CSXPression.Tokens
         public ExpressionType ExpressionType { get; set; }
 
         ///<inheritdoc/>
-        public string PrecedenceId => ExpressionType.ToString();
+        public string PrecedenceId => "Unary";
 
         /// <inheritdoc/>
         public Expression GetExpression(ExpressionEvaluator evaluator)

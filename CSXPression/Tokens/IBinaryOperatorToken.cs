@@ -3,7 +3,7 @@
     /// <summary>
     /// This interface represent a operator token that take 2 operand (Left and right)
     /// </summary>
-    public interface IBinaryOperatorToken
+    public interface IBinaryOperatorToken : IOperatorToken
     {
         /// <summary>
         /// The left operand of the operator

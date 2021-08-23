@@ -6,7 +6,7 @@ namespace CSXPression.Tokens
     /// <summary>
     /// This token represent a operator with 2 operands
     /// </summary>
-    public class BinaryOperatorExpressionToken : IToken, IOperatorToken, IBinaryOperatorToken
+    public class BinaryOperatorExpressionToken : IBinaryOperatorToken
     {
         public BinaryOperatorExpressionToken(ExpressionType expressionType)
         {
