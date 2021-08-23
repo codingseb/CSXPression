@@ -22,8 +22,11 @@ namespace TryWindow
 
         public int Iterations { get; set; } = 1;
 
+        public bool InExecution { get; set; }
+
         public ICommand ExecuteCommand => new RelayCommand(async _ =>
         {
+            InExecution = true;
             Stopwatch stopWatch = new Stopwatch();
             cancellationTokenSource = new CancellationTokenSource();
             cancellationTokenSource.Token.ThrowIfCancellationRequested();
@@ -35,10 +38,12 @@ namespace TryWindow
 
                 try
                 {
-                    var compiledFunc = evaluator.Compile<object>(Expression);
+                    Func<object> compiledFunc = evaluator.Compile<object>(Expression);
 
                     for (int i = 0; i < Iterations && !cancellationTokenSource.Token.IsCancellationRequested; i++)
+                    {
                         innerResult = compiledFunc()?.ToString() ?? "null or Empty";
+                    }
 
                     return innerResult;
                 }
@@ -53,7 +58,12 @@ namespace TryWindow
             }, cancellationTokenSource.Token).ConfigureAwait(true);
 
             ExecutionTime = $"Execution time : {stopWatch.Elapsed}";
+
+            InExecution = false;
         });
+
+        private RelayCommand cancelCommand;
+        public ICommand CancelCommand => cancelCommand ??= new RelayCommand(_ => cancellationTokenSource.Cancel());
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -71,6 +81,9 @@ namespace TryWindow
         private MainViewModel()
         { }
 
+        private void Cancel(object commandParameter)
+        {
+        }
         #endregion
     }
 }

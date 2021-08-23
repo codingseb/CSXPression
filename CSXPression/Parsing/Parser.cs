@@ -30,6 +30,7 @@ namespace CSXPression.Parsing
         {
             ParseCast,
             ParseNumber,
+            ParseDefaultConstants,
             ParseOperators,
             ParseChar,
             ParseParentheses,

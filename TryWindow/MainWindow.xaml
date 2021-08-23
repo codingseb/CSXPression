@@ -11,7 +11,14 @@
         DataContext="{Binding Source={x:Static local:MainViewModel.Instance}}">
     <StackPanel>
         <TextBox Text="{Binding Expression, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-        <Button Content="_Execute" IsDefault="True" Command="{Binding ExecuteCommand}"/>
+        <Button Content="_Execute" 
+                IsDefault="True" 
+                Command="{Binding ExecuteCommand}"
+                IsEnabled="{Binding InExecution, Converter={local:BoolReverseConverter}}"/>
+        <Button Content="_Cancel"
+                IsCancel="True"
+                Command="{Binding CancelCommand}"
+                IsEnabled="{Binding InExecution}" />
         <DockPanel>
             <Label Content="_Iterations"
                    Target="{Binding ElementName=IterationsTextBox}" />

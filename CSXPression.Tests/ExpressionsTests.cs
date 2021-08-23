@@ -106,20 +106,18 @@ namespace CSXPression.Tests
 
         #endregion
 
-        // TODO null, bool
+        #region Null Expression
 
-        //#region Null Expression
+        [TestCase("null", ExpectedResult = null, Category = "Null Expression")]
 
-        //[TestCase("null", ExpectedResult = null, Category = "Null Expression")]
+        #endregion
 
-        //#endregion
+        #region Booleans Constants
 
-        //#region Booleans Constants
+        [TestCase("true", ExpectedResult = true, Category = "Boolean Constants")]
+        [TestCase("false", ExpectedResult = false, Category = "Boolean Constants")]
 
-        //[TestCase("true", ExpectedResult = true, Category = "Boolean Constants")]
-        //[TestCase("false", ExpectedResult = false, Category = "Boolean Constants")]
-
-        //#endregion
+        #endregion
 
         #region String Operations
 
@@ -202,7 +200,7 @@ namespace CSXPression.Tests
 
         // TODO  Methods for char tests
         [TestCase("\"hello\" + ' ' + '!'", ExpectedResult = "hello !", Category = "char")]
-        //[TestCase("(int)'a'", ExpectedResult = 97, Category = "char")]
+        [TestCase("(int)'a'", ExpectedResult = 97, Category = "char")]
         //[TestCase("'a'.CompareTo('b')", ExpectedResult = -1, Category = "char")]
         //[TestCase("'a'.Equals('b')", ExpectedResult = false, Category = "char")]
         //[TestCase("'b'.Equals('b')", ExpectedResult = true, Category = "char")]
@@ -407,7 +405,7 @@ namespace CSXPression.Tests
 
         #region Parentheses Priority
 
-        // TODO boolean values and default functions
+        // TODO default functions
         [TestCase("(5d - 10) / 2",  ExpectedResult = -2.5, Category = "ParenthesisPriority")]
         [TestCase("(5d + 10) / 2",  ExpectedResult = 7.5, Category = "ParenthesisPriority")]
         [TestCase("(5m - 10) / 2",  ExpectedResult = -2.5, Category = "ParenthesisPriority")]
@@ -419,8 +417,8 @@ namespace CSXPression.Tests
         [TestCase("5 - (10 * 2)",  ExpectedResult = -15, Category = "ParenthesisPriority")]
         [TestCase("5 + (10 * 2)",  ExpectedResult = 25, Category = "ParenthesisPriority")]
         //[TestCase("3 + (2 * (5 - 3 - (Abs(-5) - 6)))",  ExpectedResult = 9, Category = "ParenthesisPriority")]
-        //[TestCase("!(!false || false)",  ExpectedResult = false, Category = "ParenthesisPriority")]
-        //[TestCase("!(!false || false) || !(!true && true)",  ExpectedResult = true, Category = "ParenthesisPriority")]
+        [TestCase("!(!false || false)", ExpectedResult = false, Category = "ParenthesisPriority")]
+        [TestCase("!(!false || false) || !(!true && true)", ExpectedResult = true, Category = "ParenthesisPriority")]
 
         [TestCase("+(5d - 10) / 2",  ExpectedResult = -2.5, Category = "ParenthesisPriority")]
         [TestCase("+(5d + 10) / 2",  ExpectedResult = 7.5, Category = "ParenthesisPriority")]
@@ -527,14 +525,14 @@ namespace CSXPression.Tests
 
         #endregion
 
-        // TODO Null coalescing and conditional, default, typeof, sizeof, new keyword
+        #region Null Coalescing Operator
 
-        //#region Null Coalescing Operator
+        [TestCase("\"Option1\" ?? \"Option2\"", ExpectedResult = "Option1", Category = "Null Coalescing Operator")]
+        [TestCase("null ?? \"Option2\"", ExpectedResult = "Option2", Category = "Null Coalescing Operator")]
 
-        //[TestCase("\"Option1\" ?? \"Option2\"", ExpectedResult = "Option1", Category = "Null Coalescing Operator")]
-        //[TestCase("null ?? \"Option2\"", ExpectedResult = "Option2", Category = "Null Coalescing Operator")]
+        #endregion
 
-        //#endregion
+        // TODO Null conditional, default, typeof, sizeof, new keyword
 
         //#region Null conditional Operator
 
@@ -669,14 +667,16 @@ namespace CSXPression.Tests
         //#endregion
 
         //#region Math Constants
-        //[TestCase("Pi",  ExpectedResult = Math.PI, Category = "Math Constants")]
-        //[TestCase("E",  ExpectedResult = Math.E, Category = "Math Constants")]
-        //[TestCase("+Pi",  ExpectedResult = +Math.PI, Category = "Math Constants,Unary +")]
-        //[TestCase("+E",  ExpectedResult = +Math.E, Category = "Math Constants,Unary +")]
-        //[TestCase("-Pi",  ExpectedResult = -Math.PI, Category = "Math Constants,Unary -")]
-        //[TestCase("-E",  ExpectedResult = -Math.E, Category = "Math Constants,Unary -")]
-        //[TestCase("-Pi + +Pi",  ExpectedResult = 0, Category = "Math Constants,Unary -")]
-        //[TestCase("-E - -E",  ExpectedResult = 0, Category = "Math Constants,Unary -")]
+
+        [TestCase("Pi", ExpectedResult = Math.PI, Category = "Math Constants")]
+        [TestCase("E", ExpectedResult = Math.E, Category = "Math Constants")]
+        [TestCase("+Pi", ExpectedResult = +Math.PI, Category = "Math Constants,Unary +")]
+        [TestCase("+E", ExpectedResult = +Math.E, Category = "Math Constants,Unary +")]
+        [TestCase("-Pi", ExpectedResult = -Math.PI, Category = "Math Constants,Unary -")]
+        [TestCase("-E", ExpectedResult = -Math.E, Category = "Math Constants,Unary -")]
+        [TestCase("-Pi + +Pi", ExpectedResult = 0, Category = "Math Constants,Unary -")]
+        [TestCase("-E - -E", ExpectedResult = 0, Category = "Math Constants,Unary -")]
+
         //#endregion
 
         //#region Lambda functions
