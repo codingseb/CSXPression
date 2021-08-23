@@ -12,6 +12,8 @@ namespace CSXPression.Tokens
             Value = value;
         }
 
+        public ConstantToken() {}
+
         /// <summary>
         /// The constant value
         /// </summary>
@@ -25,7 +27,7 @@ namespace CSXPression.Tokens
 
         public override string ToString()
         {
-            return $"Type = {GetType()}, Value = {Value}, NumberType = {Value?.GetType()}";
+            return $"Type = {GetType()}, Value = {Value}, ValueType = {Value?.GetType()}";
         }
     }
 }

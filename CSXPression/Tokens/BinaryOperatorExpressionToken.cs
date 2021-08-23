@@ -30,19 +30,28 @@ namespace CSXPression.Tokens
             Expression left = LeftOperand.GetExpression(evaluator);
             Expression right = RightOperand.GetExpression(evaluator);
 
-            if (left.Type != right.Type)
+            if ((left.Type == typeof(string) || right.Type == typeof(string)) && ExpressionType == ExpressionType.Add)
             {
-                if (left.Type.IsImplicitlyCastableTo(right.Type))
-                {
-                    left = Expression.Convert(left, right.Type);
-                }
-                else if (right.Type.IsImplicitlyCastableTo(left.Type))
-                {
-                    right = Expression.Convert(right, left.Type);
-                }
+                return Expression.Call(typeof(string).GetMethod(nameof(string.Concat), new[] { typeof(object), typeof(object) }),
+                    Expression.Convert(left, typeof(object)),
+                    Expression.Convert(right, typeof(object)));
             }
+            else
+            {
+                if (left.Type != right.Type)
+                {
+                    if (left.Type.IsImplicitlyCastableTo(right.Type))
+                    {
+                        left = Expression.Convert(left, right.Type);
+                    }
+                    else if (right.Type.IsImplicitlyCastableTo(left.Type))
+                    {
+                        right = Expression.Convert(right, left.Type);
+                    }
+                }
 
-            return Expression.MakeBinary(ExpressionType, left, right);
+                return Expression.MakeBinary(ExpressionType, left, right);
+            }
         }
 
         /// <inheritdoc/>

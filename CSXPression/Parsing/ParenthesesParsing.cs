@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CSXPression.Parsing
 {
@@ -13,14 +14,12 @@ namespace CSXPression.Parsing
 
             if (s.Equals(")", StringComparison.Ordinal))
             {
-                throw new Exception($"To much ')' characters are defined in expression : [{expression}] : no corresponding '(' fund.");
+                throw new ParsingException($"To much ')' characters are defined in expression : [{expression}] : no corresponding '(' fund.");
             }
 
             if (s.Equals("(", StringComparison.Ordinal))
             {
                 i++;
-
-                //CorrectStackWithUnaryPlusOrMinusBeforeParenthisIfNecessary(stack);
 
                 List<string> expressionsBetweenParentheses = GetExpressionsBetweenParenthesesOrOtherImbricableBrackets(expression, ref i, false);
 
@@ -41,24 +40,23 @@ namespace CSXPression.Parsing
             int bracketCount = 1;
             for (; i < expression.Length; i++)
             {
-                // TODO implement strings
-                //string subExpr = expression.Substring(i);
-                //Match internalStringMatch = stringBeginningRegex.Match(subExpr);
-                //Match internalCharMatch = internalCharRegex.Match(subExpr);
+                string subExpr = expression.Substring(i);
+                Match internalStringMatch = stringBeginningRegex.Match(subExpr);
+                Match internalCharMatch = internalCharRegex.Match(subExpr);
 
-                //if (OptionStringEvaluationActive && internalStringMatch.Success)
-                //{
-                //    string innerString = internalStringMatch.Value + GetCodeUntilEndOfString(expression.Substring(i + internalStringMatch.Length), internalStringMatch);
-                //    currentExpression += innerString;
-                //    i += innerString.Length - 1;
-                //}
-                //else if (OptionCharEvaluationActive && internalCharMatch.Success)
-                //{
-                //    currentExpression += internalCharMatch.Value;
-                //    i += internalCharMatch.Length - 1;
-                //}
-                //else
-                //{
+                if (Functionalities.StringParsing && internalStringMatch.Success)
+                {
+                    string innerString = internalStringMatch.Value + GetCodeUntilEndOfString(expression.Substring(i + internalStringMatch.Length), internalStringMatch);
+                    currentExpression += innerString;
+                    i += innerString.Length - 1;
+                }
+                else if (Functionalities.CharParsing && internalCharMatch.Success)
+                {
+                    currentExpression += internalCharMatch.Value;
+                    i += internalCharMatch.Length - 1;
+                }
+                else
+                {
                     s = expression.Substring(i, 1);
 
                     if (s.Equals(startChar))
@@ -104,13 +102,13 @@ namespace CSXPression.Parsing
                     {
                         currentExpression += s;
                     }
-                //}
+                }
             }
 
             if (bracketCount > 0)
             {
                 string beVerb = bracketCount == 1 ? "is" : "are";
-                throw new Exception($"{bracketCount} '{endChar}' character {beVerb} missing in expression : [{expression}]");
+                throw new ParsingException($"{bracketCount} '{endChar}' character {beVerb} missing in expression : [{expression}]");
             }
 
             return expressionsList;

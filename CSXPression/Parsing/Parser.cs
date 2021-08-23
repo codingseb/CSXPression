@@ -30,13 +30,20 @@ namespace CSXPression.Parsing
         {
             ParseNumber,
             ParseOperators,
+            ParseChar,
             ParseParentheses,
+            ParseString,
         };
 
-        /// <inheritdoc/>
-        public IParserOptions ParserOptions { get; set; } = new ParserOptions();
+        /// <summary>
+        /// Options of the parser to customize the way the parsing is done.
+        /// </summary>
+        public ParserOptions Options { get; set; } = new ParserOptions();
 
-        protected ParserOptions Options => ParserOptions as ParserOptions ?? new ParserOptions();
+        /// <summary>
+        /// Allow to enable or disable some parts/functionalities of the parsing process
+        /// </summary>
+        public ParserFunctionalities Functionalities { get; set; } = new ParserFunctionalities();
 
         /// <inheritdoc />
         public virtual IToken Parse(string code)
@@ -51,7 +58,7 @@ namespace CSXPression.Parsing
 
                     if (!string.IsNullOrWhiteSpace(s))
                     {
-                        throw new Exception($"Invalid character [{(int)s[0]}:{s}]");
+                        throw new ParsingException($"Invalid character [{(int)s[0]}:{s}]");
                     }
                 }
             }

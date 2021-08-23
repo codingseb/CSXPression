@@ -49,17 +49,16 @@ namespace CSXPression.Parsing
         /// <returns>The root token of the tokens tree</returns>
         public virtual IToken ProcessStack(Stack<IToken> stack)
         {
-            // TODO Better exception
             if (stack.Count == 0)
             {
-                throw new Exception("Empty expression or no token found");
+                throw new ParsingException("Empty expression or no token found");
             }
 
             List<IToken> tokensList = stack.Reverse().ToList();
 
             OperatorsPrecedence.ForEach(precedenceId =>
             {
-                for (int i = tokensList.Count - 1; i >= 0; i--)
+                for (int i = 0; i < tokensList.Count; i++)
                 {
                     if (tokensList[i] is IOperatorToken operatorToken
                         && operatorToken.PrecedenceId.Equals(precedenceId, StringComparison.Ordinal))

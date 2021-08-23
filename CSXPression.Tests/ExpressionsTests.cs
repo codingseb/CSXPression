@@ -106,7 +106,7 @@ namespace CSXPression.Tests
 
         #endregion
 
-        // TODO null, bool, strings, char
+        // TODO null, bool
 
         //#region Null Expression
 
@@ -121,43 +121,45 @@ namespace CSXPression.Tests
 
         //#endregion
 
-        //#region String Operations
+        #region String Operations
 
-        //[TestCase("\"Hello World\"", ExpectedResult = "Hello World", Category = "SimpleString")]
-        //[TestCase("\"Hello\" + \"World\"", ExpectedResult = "HelloWorld", Category = "SimpleString")]
+        [TestCase("\"Hello World\"", ExpectedResult = "Hello World", Category = "SimpleString")]
+        [TestCase("\"Hello\" + \"World\"", ExpectedResult = "HelloWorld", Category = "SimpleString")]
 
-        //[TestCase("\"\\\"\"", ExpectedResult = "\"", Category = "StringEscape")]
-        //[TestCase("\"\\n\"", ExpectedResult = "\n", Category = "StringEscape")]
-        //[TestCase("\"\\r\"", ExpectedResult = "\r", Category = "StringEscape")]
-        //[TestCase("\"\\t\"", ExpectedResult = "\t", Category = "StringEscape")]
-        //[TestCase("\"" + @"\\" + "\"", ExpectedResult = @"\", Category = "StringEscape")]
-        //[TestCase("\"" + @"\\\n" + "\"", ExpectedResult = "\\\n", Category = "StringEscape")]
-        //[TestCase("@\"" + @"\\n" + "\"", ExpectedResult = @"\\n", Category = "StringEscape")]
+        [TestCase("\"\\\"\"", ExpectedResult = "\"", Category = "StringEscape")]
+        [TestCase("\"\\n\"", ExpectedResult = "\n", Category = "StringEscape")]
+        [TestCase("\"\\r\"", ExpectedResult = "\r", Category = "StringEscape")]
+        [TestCase("\"\\t\"", ExpectedResult = "\t", Category = "StringEscape")]
+        [TestCase("\"" + @"\\" + "\"", ExpectedResult = @"\", Category = "StringEscape")]
+        [TestCase("\"" + @"\\\n" + "\"", ExpectedResult = "\\\n", Category = "StringEscape")]
+        [TestCase("@\"" + @"\\n" + "\"", ExpectedResult = @"\\n", Category = "StringEscape")]
 
-        //[TestCase("$\"Hello {1 + 2}\"", ExpectedResult = "Hello 3", Category = "StringInterpolation")]
-        //[TestCase("$\"{'\"'}\"", ExpectedResult = "\"", Category = "StringInterpolation")]
-        //[TestCase("$\"{ '\"' }\"", ExpectedResult = "\"", Category = "StringInterpolation")]
-        //[TestCase("$\"{{\"", ExpectedResult = "{", Category = "StringInterpolation")]
-        //[TestCase("$\"{ \"{\" }\"", ExpectedResult = "{", Category = "StringInterpolation")]
-        //[TestCase("$\"Test { 5+5 } Test\"", ExpectedResult = "Test 10 Test", Category = "StringInterpolation")]
-        //[TestCase("$\"Test { 5+5 + \" Test\" } Test\"", ExpectedResult = "Test 10 Test Test", Category = "StringInterpolation")]
-        //[TestCase("$\"Test { 5+5 + \" Test{\" } Test\"", ExpectedResult = "Test 10 Test{ Test", Category = "StringInterpolation")]
-        //[TestCase("$\"Test { 5+5 + \" Test{{ }\" } Test\"", ExpectedResult = "Test 10 Test{{ } Test", Category = "StringInterpolation")]
+        [TestCase("$\"Hello {1 + 2}\"", ExpectedResult = "Hello 3", Category = "StringInterpolation")]
+        [TestCase("$\"{'\"'}\"", ExpectedResult = "\"", Category = "StringInterpolation")]
+        [TestCase("$\"{ '\"' }\"", ExpectedResult = "\"", Category = "StringInterpolation")]
+        [TestCase("$\"{{\"", ExpectedResult = "{", Category = "StringInterpolation")]
+        [TestCase("$\"{ \"{\" }\"", ExpectedResult = "{", Category = "StringInterpolation")]
+        [TestCase("$\"Test { 5+5 } Test\"", ExpectedResult = "Test 10 Test", Category = "StringInterpolation")]
+        [TestCase("$\"Test { 5+5 + \" Test\" } Test\"", ExpectedResult = "Test 10 Test Test", Category = "StringInterpolation")]
+        [TestCase("$\"Test { 5+5 + \" Test{\" } Test\"", ExpectedResult = "Test 10 Test{ Test", Category = "StringInterpolation")]
+        [TestCase("$\"Test { 5+5 + \" Test{{ }\" } Test\"", ExpectedResult = "Test 10 Test{{ } Test", Category = "StringInterpolation")]
 
-        //[TestCase("$\"Hello { $\"TS\"}\"", ExpectedResult = "Hello TS", Category = "StringInterpolationInCascade")]
-        //[TestCase("$\"Hello { $\"T{{S\"}\"", ExpectedResult = "Hello T{S", Category = "StringInterpolationInCascade")]
-        //[TestCase("$\"Hello { $\"T}}S\"}\"", ExpectedResult = "Hello T}S", Category = "StringInterpolationInCascade")]
-        //[TestCase("$\"Hello { $\"T{1 + 2}\"}\"", ExpectedResult = "Hello T3", Category = "StringInterpolationInCascade")]
-        //[TestCase("$\"Hello { $\"T{1 + 2 + \"S\"}\"}\"", ExpectedResult = "Hello T3S", Category = "StringInterpolationInCascade")]
-        //[TestCase("$\"Hello { $\"T{1 + 2 + $\"S\"}\"}\"", ExpectedResult = "Hello T3S", Category = "StringInterpolationInCascade")]
-        //[TestCase("$\"Hello { $\"T{1 + 2 + $\"S{ 2 + 2 }\"}\"}\"", ExpectedResult = "Hello T3S4", Category = "StringInterpolationInCascade")]
-        //[TestCase("$\"Hello { $\"T{1 + 2 + $\"S{ 2 + 2 } Test\"}\"}\"", ExpectedResult = "Hello T3S4 Test", Category = "StringInterpolationInCascade")]
-        //[TestCase("$\"Hello { $\"T{1 + 2 + $\"S{ 2 + \" Test\" }\"}\"}\"", ExpectedResult = "Hello T3S2 Test", Category = "StringInterpolationInCascade")]
-        //[TestCase("$\"Hello { $\"T{1 + 2 + $\"S{ 2 + $\" Test\" }\"}\"}\"", ExpectedResult = "Hello T3S2 Test", Category = "StringInterpolationInCascade")]
-        //[TestCase("$\"Hello { $\"T{1 + 2 + $\"S{ 2 + $\" Test{ 2 + 2 }\" }\"}\"}\"", ExpectedResult = "Hello T3S2 Test4", Category = "StringInterpolationInCascade")]
+        [TestCase("$\"Hello { $\"TS\"}\"", ExpectedResult = "Hello TS", Category = "StringInterpolationInCascade")]
+        [TestCase("$\"Hello { $\"T{{S\"}\"", ExpectedResult = "Hello T{S", Category = "StringInterpolationInCascade")]
+        [TestCase("$\"Hello { $\"T}}S\"}\"", ExpectedResult = "Hello T}S", Category = "StringInterpolationInCascade")]
+        [TestCase("$\"Hello { $\"T{1 + 2}\"}\"", ExpectedResult = "Hello T3", Category = "StringInterpolationInCascade")]
+        [TestCase("$\"Hello { $\"T{1 + 2 + \"S\"}\"}\"", ExpectedResult = "Hello T3S", Category = "StringInterpolationInCascade")]
+        [TestCase("$\"Hello { $\"T{1 + 2 + $\"S\"}\"}\"", ExpectedResult = "Hello T3S", Category = "StringInterpolationInCascade")]
+        [TestCase("$\"Hello { $\"T{1 + 2 + $\"S{ 2 + 2 }\"}\"}\"", ExpectedResult = "Hello T3S4", Category = "StringInterpolationInCascade")]
+        [TestCase("$\"Hello { $\"T{1 + 2 + $\"S{ 2 + 2 } Test\"}\"}\"", ExpectedResult = "Hello T3S4 Test", Category = "StringInterpolationInCascade")]
+        [TestCase("$\"Hello { $\"T{1 + 2 + $\"S{ 2 + \" Test\" }\"}\"}\"", ExpectedResult = "Hello T3S2 Test", Category = "StringInterpolationInCascade")]
+        [TestCase("$\"Hello { $\"T{1 + 2 + $\"S{ 2 + $\" Test\" }\"}\"}\"", ExpectedResult = "Hello T3S2 Test", Category = "StringInterpolationInCascade")]
+        [TestCase("$\"Hello { $\"T{1 + 2 + $\"S{ 2 + $\" Test{ 2 + 2 }\" }\"}\"}\"", ExpectedResult = "Hello T3S2 Test4", Category = "StringInterpolationInCascade")]
 
-        //[TestCase("\"Hello\" + (\"Test\" + \"(\")", ExpectedResult = "HelloTest(", Category = "StringBetweenParenthis")]
-        //[TestCase("\"Hello\" + (\"Test\" + \")\")", ExpectedResult = "HelloTest)", Category = "StringBetweenParenthis")]
+        [TestCase("\"Hello\" + (\"Test\" + \"(\")", ExpectedResult = "HelloTest(", Category = "StringBetweenParenthis")]
+        [TestCase("\"Hello\" + (\"Test\" + \")\")", ExpectedResult = "HelloTest)", Category = "StringBetweenParenthis")]
+
+        // TODO : Func and method in string tests
 
         //[TestCase("\"Hello\" + (\"Test\" + $\"{ Abs(int.Parse(\"-4\"))}\")", ExpectedResult = "HelloTest4", Category = "StringWithParenthisOrComaInFunctionsArgs")]
         //[TestCase("\"Text()\".Replace(\"(\", \"x\")", ExpectedResult = "Textx)", Category = "StringWithParenthisOrComaInFunctionsArgs")]
@@ -169,34 +171,36 @@ namespace CSXPression.Tests
         //[TestCase("\"Hello,Test,What\".Split(new char[]{','}).Length", ExpectedResult = 3, Category = "StringSplit,Array instanciation")]
         //[TestCase("\"Hello,Test,What\".Split(new char[]{','}).Json", ExpectedResult = "[\"Hello\",\"Test\",\"What\"]", Category = "StringSplit,Array instanciation")]
 
-        //#endregion
+        #endregion
 
-        //#region char
+        #region Chars Operations
 
-        //[TestCase("'a'", ExpectedResult = 'a', Category = "char")]
-        //[TestCase("'g'", ExpectedResult = 'g', Category = "char")]
-        //[TestCase("'z'", ExpectedResult = 'z', Category = "char")]
-        //[TestCase("'A'", ExpectedResult = 'A', Category = "char")]
-        //[TestCase("'Q'", ExpectedResult = 'Q', Category = "char")]
-        //[TestCase("'Z'", ExpectedResult = 'Z', Category = "char")]
-        //[TestCase("'é'", ExpectedResult = 'é', Category = "char")]
-        //[TestCase("'è'", ExpectedResult = 'è', Category = "char")]
-        //[TestCase("'ô'", ExpectedResult = 'ô', Category = "char")]
-        //[TestCase("'ç'", ExpectedResult = 'ç', Category = "char")]
-        //[TestCase("'%'", ExpectedResult = '%', Category = "char")]
-        //[TestCase("'('", ExpectedResult = '(', Category = "char")]
-        //[TestCase("'\"'", ExpectedResult = '"', Category = "char")]
-        //[TestCase(@"'\\'", ExpectedResult = '\\', Category = "char")]
-        //[TestCase(@"'\''", ExpectedResult = '\'', Category = "char")]
-        //[TestCase(@"'\0'", ExpectedResult = '\0', Category = "char")]
-        //[TestCase(@"'\a'", ExpectedResult = '\a', Category = "char")]
-        //[TestCase(@"'\b'", ExpectedResult = '\b', Category = "char")]
-        //[TestCase(@"'\f'", ExpectedResult = '\f', Category = "char")]
-        //[TestCase(@"'\n'", ExpectedResult = '\n', Category = "char")]
-        //[TestCase(@"'\r'", ExpectedResult = '\r', Category = "char")]
-        //[TestCase(@"'\t'", ExpectedResult = '\t', Category = "char")]
-        //[TestCase(@"'\v'", ExpectedResult = '\v', Category = "char")]
-        //[TestCase("'\"'", ExpectedResult = '"', Category = "char")]
+        [TestCase("'a'", ExpectedResult = 'a', Category = "char")]
+        [TestCase("'g'", ExpectedResult = 'g', Category = "char")]
+        [TestCase("'z'", ExpectedResult = 'z', Category = "char")]
+        [TestCase("'A'", ExpectedResult = 'A', Category = "char")]
+        [TestCase("'Q'", ExpectedResult = 'Q', Category = "char")]
+        [TestCase("'Z'", ExpectedResult = 'Z', Category = "char")]
+        [TestCase("'é'", ExpectedResult = 'é', Category = "char")]
+        [TestCase("'è'", ExpectedResult = 'è', Category = "char")]
+        [TestCase("'ô'", ExpectedResult = 'ô', Category = "char")]
+        [TestCase("'ç'", ExpectedResult = 'ç', Category = "char")]
+        [TestCase("'%'", ExpectedResult = '%', Category = "char")]
+        [TestCase("'('", ExpectedResult = '(', Category = "char")]
+        [TestCase("'\"'", ExpectedResult = '"', Category = "char")]
+        [TestCase(@"'\\'", ExpectedResult = '\\', Category = "char")]
+        [TestCase(@"'\''", ExpectedResult = '\'', Category = "char")]
+        [TestCase(@"'\0'", ExpectedResult = '\0', Category = "char")]
+        [TestCase(@"'\a'", ExpectedResult = '\a', Category = "char")]
+        [TestCase(@"'\b'", ExpectedResult = '\b', Category = "char")]
+        [TestCase(@"'\f'", ExpectedResult = '\f', Category = "char")]
+        [TestCase(@"'\n'", ExpectedResult = '\n', Category = "char")]
+        [TestCase(@"'\r'", ExpectedResult = '\r', Category = "char")]
+        [TestCase(@"'\t'", ExpectedResult = '\t', Category = "char")]
+        [TestCase(@"'\v'", ExpectedResult = '\v', Category = "char")]
+        [TestCase("'\"'", ExpectedResult = '"', Category = "char")]
+
+        // TODO string, Methods for char tests
         //[TestCase("\"hello\" + ' ' + '!'", ExpectedResult = "hello !", Category = "char")]
         //[TestCase("(int)'a'", ExpectedResult = 97, Category = "char")]
         //[TestCase("'a'.CompareTo('b')", ExpectedResult = -1, Category = "char")]
@@ -219,7 +223,7 @@ namespace CSXPression.Tests
         //[TestCase("char.ToLower('M')", ExpectedResult = 'm', Category = "char")]
         //[TestCase("'x'.ToString()", ExpectedResult = "x", Category = "char")]
 
-        //#endregion
+        #endregion
 
         #region SimpleAddition
 
