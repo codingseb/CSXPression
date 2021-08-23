@@ -11,7 +11,7 @@ namespace CSXPression.Parsing
     {
         /// <summary>
         /// Dictionary used to map the string operator detection to its corresponding <see cref="ExpressionType"/>
-        /// to build a <see cref="BinaryOperatorToken" />.
+        /// to build a <see cref="BinaryOperatorExpressionToken" />.
         /// <para>
         /// Default Dictionary based on https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/
         /// and https://docs.microsoft.com/en-us/dotnet/api/system.linq.expressions.expressiontype
@@ -43,7 +43,7 @@ namespace CSXPression.Parsing
 
         /// <summary>
         /// Dictionary used to map the string operator detection to its corresponding <see cref="ExpressionType"/>
-        /// to build a <see cref="UnaryOperatorToken" />.
+        /// to build a <see cref="UnaryOperatorExpressionToken" />.
         /// <para>
         /// Default Dictionary based on https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/
         /// and https://docs.microsoft.com/en-us/dotnet/api/system.linq.expressions.expressiontype
@@ -76,11 +76,11 @@ namespace CSXPression.Parsing
                     && (!BinaryOperatorsDictionary.ContainsKey(op)
                     || stack.Count == 0 || stack.Peek() is IOperatorToken))
                 {
-                    stack.Push(new UnaryOperatorToken(UnaryOperatorsDictionary[op]));
+                    stack.Push(new UnaryOperatorExpressionToken(UnaryOperatorsDictionary[op]));
                 }
                 else
                 {
-                    stack.Push(new BinaryOperatorToken(BinaryOperatorsDictionary[op]));
+                    stack.Push(new BinaryOperatorExpressionToken(BinaryOperatorsDictionary[op]));
                 }
 
                 i += match.Length - 1;

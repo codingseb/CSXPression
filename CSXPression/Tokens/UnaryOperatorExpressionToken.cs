@@ -5,9 +5,9 @@ namespace CSXPression.Tokens
     /// <summary>
     /// This token represent a expression operator with only 1 operand
     /// </summary>
-    public class UnaryOperatorToken : IToken, IOperatorToken, IUnaryOperatorToken
+    public class UnaryOperatorExpressionToken : IToken, IOperatorToken, IUnaryOperatorToken
     {
-        public UnaryOperatorToken(ExpressionType expressionType)
+        public UnaryOperatorExpressionToken(ExpressionType expressionType)
         {
             ExpressionType = expressionType;
         }

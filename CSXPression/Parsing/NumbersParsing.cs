@@ -30,7 +30,7 @@ namespace CSXPression.Parsing
             if (otherBaseMatch.Success
                 && (!otherBaseMatch.Groups["sign"].Success
                 || stack.Count == 0
-                || stack.Peek() is BinaryOperatorToken))
+                || stack.Peek() is BinaryOperatorExpressionToken))
             {
                 i += otherBaseMatch.Length;
                 i--;
@@ -46,7 +46,7 @@ namespace CSXPression.Parsing
             else if (numberMatch.Success
                 && (!numberMatch.Groups["sign"].Success
                 || stack.Count == 0
-                || stack.Peek() is BinaryOperatorToken))
+                || stack.Peek() is BinaryOperatorExpressionToken))
             {
                 i += numberMatch.Length;
                 i--;
