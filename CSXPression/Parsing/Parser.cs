@@ -28,6 +28,7 @@ namespace CSXPression.Parsing
         /// </summary>
         public virtual IList<ParsingMethodDelegate> ParsingMethods => parsingMethods ??= new List<ParsingMethodDelegate>()
         {
+            ParseCast,
             ParseNumber,
             ParseOperators,
             ParseChar,
