@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TryWindow", "TryWindow\TryW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSXPression.Tests", "CSXPression.Tests\CSXPression.Tests.csproj", "{F33A3CE7-99CE-4213-BD26-97B756C87D2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryCScharpStuffs", "TryCScharpStuffs\TryCScharpStuffs.csproj", "{28B0F864-D94B-4C9B-A8B7-D1E084192D69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TryCSharpStuffs", "TryCSharpStuffs\TryCSharpStuffs.csproj", "{28B0F864-D94B-4C9B-A8B7-D1E084192D69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
