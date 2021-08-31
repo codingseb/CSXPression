@@ -3,7 +3,7 @@
 namespace CSXPression.Tokens
 {
     /// <summary>
-    /// -- Describe here to what is this class used for. (What is it's purpose) --
+    /// This token represent a parenthis and is used to prioritize a subToken evaluation
     /// </summary>
     public class ParenthesesToken : IToken
     {
