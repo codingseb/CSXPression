@@ -12,7 +12,7 @@ namespace CSXPression.Lexer
         /// <summary>
         /// The scanned code
         /// </summary>
-        public virtual string Code { get; init; }
+        public virtual string Code { get; }
 
         /// <summary>
         /// The current position in the code

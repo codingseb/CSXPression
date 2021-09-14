@@ -40,6 +40,8 @@ namespace CSXPression.Lexer
                 return new Token();
 
             return new Token();
+
+            throw new LexingException(LexingExceptionKind.CanNotReadNextToken, Scanner.Code, Scanner.Position, $"An error occured during parsing the code at {Scanner.Position}, the next char [{Scanner.Peek()}] can not be tokenized");
         }
     }
 }

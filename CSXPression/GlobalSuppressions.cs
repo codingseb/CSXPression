@@ -6,3 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Style", "IDE0057:Use range operator", Justification = "<Pending>", Scope = "namespaceanddescendants", Target = "~N:CSXPression")]
+[assembly: SuppressMessage("Design", "RCS1194:Implement exception constructors.", Justification = "<Pending>", Scope = "type", Target = "~T:CSXPression.Lexer.LexingException")]

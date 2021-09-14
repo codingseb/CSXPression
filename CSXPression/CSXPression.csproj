@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Tokens\" />
+    <Compile Remove="Tokens\**" />
+    <EmbeddedResource Remove="Tokens\**" />
+    <None Remove="Tokens\**" />
   </ItemGroup>
 
 </Project>
