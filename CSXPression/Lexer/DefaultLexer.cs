@@ -24,6 +24,11 @@ namespace CSXPression.Lexer
         /// <inheritdoc/>
         public virtual CodeScanner Scanner { get; set; }
 
+        /// <summary>
+        /// Current Position
+        /// </summary>
+        public int Position => Scanner.Position;
+
         /// <inheritdoc/>
         public virtual Token Peek()
         {
@@ -41,7 +46,21 @@ namespace CSXPression.Lexer
 
             return new Token();
 
-            throw new LexingException(LexingExceptionKind.CanNotReadNextToken, Scanner.Code, Scanner.Position, $"An error occured during parsing the code at {Scanner.Position}, the next char [{Scanner.Peek()}] can not be tokenized");
+            throw new LexingException(LexingExceptionKind.CanNotReadNextToken, Scanner.Code, Position, $"An error occured during parsing the code at {Position}, the next char [{Scanner.Peek()}] can not be tokenized");
+        }
+
+        protected virtual char Accept() => Scanner.Read().Value;
+
+        protected virtual bool IsNext(Predicate<char> predicate)
+        {
+            char? next = Scanner.Peek();
+            return next.HasValue && predicate(next.Value);
+        }
+
+        protected virtual void SkipWhiteSpaces()
+        {
+            while (IsNext(char.IsWhiteSpace))
+                Accept();
         }
     }
 }
