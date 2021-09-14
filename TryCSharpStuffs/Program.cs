@@ -2,21 +2,16 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
-
+using System.Text.RegularExpressions;
 
 namespace TryCScharpStuffs
 {
     class Program
     {
+        private static Regex regex = new Regex(@"(?<name>[\p{L}_](?>[\p{L}_0-9]*))", RegexOptions.Compiled);
+
         static void Main(string[] args)
         {
-            //Console.WriteLine(Expression.Add(Expression.Constant(5), Expression.Constant(8)));
-
-            Dictionary<string, dynamic> variables = new Dictionary<string, dynamic>()
-            {
-                { "x", 2 },
-                { "y", 3 }
-            };
 
             Console.ReadLine();
         }
