@@ -23,6 +23,8 @@ namespace CSXPression.Lexer
     /// </summary>
     public class LexingException : Exception
     {
+        #region Constructors
+
         /// <summary>
         /// Initialize a new instance of the class <see cref="LexingException"/>
         /// </summary>
@@ -64,6 +66,8 @@ namespace CSXPression.Lexer
             Position = position;
             Kind = type;
         }
+
+        #endregion
 
         /// <summary>
         /// The source code on which the exception occured

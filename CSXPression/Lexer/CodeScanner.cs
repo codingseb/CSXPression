@@ -7,7 +7,7 @@ namespace CSXPression.Lexer
     /// </summary>
     public class CodeScanner
     {
-        protected Stack<int> positionStack = new Stack<int>();
+        protected Stack<int> positionStack = new();
 
         /// <summary>
         /// The scanned code
